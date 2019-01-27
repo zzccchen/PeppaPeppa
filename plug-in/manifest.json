@@ -1,0 +1,20 @@
+{
+    "name": "PeppaPeppa",
+    "version": "1.0",
+    "description": "OCR验证码自动填写插件",
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["jquery-3.3.1.min.js", "content.js"],
+        "run_at": "document_start"
+    }],
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "browser_action": {
+        "default_title": "PeppaPeppa"
+    },
+    "permissions": ["tabs", "http://127.0.0.1:8080/", "webRequest", "activeTab"],
+    "manifest_version": 2
+}
