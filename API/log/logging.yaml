@@ -1,0 +1,41 @@
+version: 1
+disable_existing_loggers: False
+formatters:
+  simple:
+    format: "[%(levelname)1.1s %(asctime)s %(name)s] %(message)s"
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+  info_file_handler:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: INFO
+    formatter: simple
+    filename: ./log/info.log  # info.log save place
+    encoding: utf8
+    when: 'midnight'  # info.log update time
+    interval: 1
+    backupCount: 7  # info.log max save number
+  error_file_handler:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: ERROR
+    formatter: simple
+    filename: ./log/errors.log  # error.log save place
+    encoding: utf8
+    when: 'midnight'  # error.log update time
+    interval: 1
+    backupCount: 7  # error.log max save number
+  debug_file_handler:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filename: ./log/debug.log  # debug.log save place
+    encoding: utf8
+    when: 'midnight'  # debug.log update time
+    interval: 1
+    backupCount: 7  # debug.log max save number
+root:
+  level: DEBUG  # DEBUG or INFO
+  handlers: [console,info_file_handler,error_file_handler,debug_file_handler]
