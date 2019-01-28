@@ -1,31 +1,27 @@
-#!/usr/bin/python3
 # -*- coding: utf-8 -*-
+# 此接口为OCR数字接口
 
-import json
 import platform
 
 import requests
-# import os
 from PIL import Image
-from tornado.httpserver import HTTPServer
-from tornado.ioloop import IOLoop
 
 from handler import BaseHandler
 from log import LogBase
 from ocr_paddle import real_infer
 from route import app
 
+logger = LogBase().get_logger("OcrD")
+
 if ('2.' in platform.python_version()):
     from StringIO import StringIO as Bytes2Data
 else:
     from io import BytesIO as Bytes2Data
 
-logger = LogBase().get_logger("Main")
-
 
 @app.route(r'/api/ocr')
-class HelloHandler(BaseHandler):
-    """hello world模块."""
+class OcrDHandler(BaseHandler):
+    """OCR数字 handler."""
     INFO = {"author": "zzccchen", "version": "1.0"}
 
     def post(self, *args, **kwargs):
@@ -72,18 +68,3 @@ class HelloHandler(BaseHandler):
         # im.save("1.png", "png")
         string = real_infer(im)
         return self.write_json_f({"ocr_data": string})
-
-
-def main():
-    try:
-        logger.info("papi start")
-
-        app.listen(8896)
-        IOLoop.current().start()
-
-    except KeyboardInterrupt:
-        logger.info("papi exit")
-
-
-if __name__ == '__main__':
-    main()

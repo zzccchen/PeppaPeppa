@@ -31,7 +31,7 @@
       <div style="width:1800px;height:100%;margin-right:auto;margin-left:auto;">
         <div style="float:left;margin-top:10px;font-size:26px;color:#fff;">PeppaPeppa</div>
         <div style="margin-top:18px;float:right;">
-          <a href=""
+          <a href="https://github.com/zzccchen/PeppaPeppa"
             style="font-size:18px;color:#fff;">GitHub</a>
         </div>
       </div>
