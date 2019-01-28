@@ -17,10 +17,10 @@ class Arg:
     def __init__(self):
         current_file_path = os.path.realpath(__file__)
         current_dir_path = os.path.dirname(current_file_path)
-        model_path = os.path.join(current_dir_path, "models", "model_14000")
+        self.model_dir_path = os.path.join(current_dir_path, "models")
+        self.model_path = os.path.join(self.model_dir_path, "model_14000")
         self.model = "crnn_ctc"
         self.use_gpu = True
-        self.model_path = model_path
         self.image_path = None
         #########
         self.batch_size = 1
@@ -77,10 +77,9 @@ def prepare_inferenc():
     exe.run(fluid.default_startup_program())
 
     # load init model
-    filename = "/home/zzccchen/peggy/PAPI/ocr_paddle/models/model_14000"
-    model_dir = "/home/zzccchen/peggy/PAPI/ocr_paddle/models"
-    fluid.io.load_params(exe, dirname=model_dir, filename=filename)
-    print("Init model from: %s." % filename)
+    fluid.io.load_params(exe, dirname=args.model_dir_path,
+                         filename=args.model_path)
+    print("Init model from: %s." % args.model_path)
 
 
 prepare_inferenc()
