@@ -12,7 +12,7 @@
 
 数据集为 4 位数字验证码，训练集大小为 9000 张，测试集大小为 1000 张
 
-数据集下载链接为：[点我]()
+数据集下载链接为：[点我](https://github.com/zzccchen/PeppaPeppa/blob/master/ocr_data.7z)
 
 ## 代码结构
 
