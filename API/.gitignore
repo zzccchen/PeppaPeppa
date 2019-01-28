@@ -62,6 +62,3 @@ iview-project-3.0/src/images/test_images/*.png
 log/*.log.*
 log/*.log
 *.cfg
-
-*.png
-*.png

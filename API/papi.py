@@ -3,16 +3,18 @@
 
 import json
 import platform
+
 import requests
 # import os
-from PIL import Image, ImageEnhance, ImageFilter
+from PIL import Image
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
 
 from handler import BaseHandler
 from log import LogBase
-from route import app
 from ocr_paddle import real_infer
+from route import app
+
 if ('2.' in platform.python_version()):
     from StringIO import StringIO as Bytes2Data
 else:

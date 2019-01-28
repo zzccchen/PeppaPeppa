@@ -7,7 +7,7 @@ import time
 
 import numpy as np
 import paddle.fluid as fluid
-from PIL import Image, ImageEnhance, ImageFilter
+from PIL import Image, ImageFilter
 
 from .crnn_ctc_model import ctc_infer
 from .utility import get_ctc_feeder_data
@@ -69,7 +69,7 @@ def prepare_inferenc():
 
     # define network
     images = fluid.layers.data(name='pixel', shape=data_shape, dtype='float32')
-    ids = infer(images, num_classes, use_cudnn=True)
+    ids = infer(images, num_classes, use_cudnn=args.use_gpu)
 
     # prepare environment
     place = fluid.CUDAPlace(0)
@@ -119,34 +119,6 @@ def inference(img):
 dict_map = {31: '0', 32: '1', 33: '2', 34: '3', 35: '4',
             36: '5', 37: '6', 38: '7',
             39: '8', 40: '9'}
-
-
-def deal_with_result(indexes, batch_time, dict_map_path=None):
-    # load dictionary
-    # dict_map = {}
-    # if dict_map_path is not None and os.path.isfile(dict_map_path):
-    #     with open(dict_map_path) as dict_file:
-    #         for i, word in enumerate(dict_file):
-    #             dict_map[i] = word.strip()
-    #     print("Loaded dict from %s" % dict_map_path)
-
-    temp_list = []
-    if len(dict_map) != 0:    # 如果 dict 不空，那么就做映射
-        temp_list = []
-        keys = dict_map.keys()
-        for i in indexes:
-            if i in keys:
-                word = dict_map[i]
-                temp_list.append(word)
-            else:
-                temp_list.append('*')
-    else:
-        temp_list = indexes
-    print("latency: %.5f s, result: %s" % (
-        batch_time,
-        temp_list))
-    result = {"index": indexes, "mapped": temp_list, "batch_time": batch_time}
-    return result
 
 
 def prune(words, sos, eos):
