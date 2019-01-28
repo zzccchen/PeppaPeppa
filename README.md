@@ -12,18 +12,49 @@
 
 数据集为 4 位数字验证码，训练集大小为 9000 张，测试集大小为 1000 张
 
-数据集下载链接为：null
+数据集下载链接为：[点我]()
 
 ## 代码结构
 
 ```shell
-├── LICENSE
-├── plug-in # 浏览器插件目录
-│   ├── content.js
-│   ├── icon.png
-│   ├── jquery-3.3.1.min.js
-│   └── manifest.json
-└── README.md
+├── API # 后端 API 目录
+│   ├── handler
+│   ├── log
+│   ├── ocr_paddle
+│   │   ├── models
+│   ├── route
+│   └── test_images
+├── frontpage # 前端目录
+│   ├── dist
+│   ├── node_modules
+│   └── src
+│       ├── config
+│       ├── images
+│       ├── libs
+│       ├── styles
+│       ├── template
+│       └── views
+└── plug-in # 插件目录
+```
+
+## 后端使用说明
+
+```shell
+cd API
+
+python3 api.py
+```
+
+## 前端使用说明
+
+```shell
+cd frontpage
+
+npm install # 首次启动需要执行该语句
+
+npm run dev # debug 模式启动
+# 或
+npm run build # 部署模式启动
 ```
 
 ## 浏览器插件使用说明
