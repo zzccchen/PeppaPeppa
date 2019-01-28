@@ -4,12 +4,9 @@ from __future__ import print_function
 
 import os
 import time
-from collections import defaultdict
 
 import numpy as np
-import paddle
 import paddle.fluid as fluid
-import paddle.fluid.profiler as profiler
 from PIL import Image, ImageEnhance, ImageFilter
 
 from .crnn_ctc_model import ctc_infer
